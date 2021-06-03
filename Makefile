@@ -1,13 +1,25 @@
-compile:
+usage = "\
+Usage:	make <option> \n\n\
+dev		Local development mode \n\
+link		Symlink a package folder \n\
+build		Build a package \n\
+publish 	Publish a package \n"
+
+default:
+	@echo $(usage)
+
+dev:
+	yarn tsc --watch -p ./tsconfig.json
+
+link: build
+	cd dist && yarn link
+
+build:
 	rm -rf dist
-	tsc
+	yarn tsc -p ./tsconfig.json
 	cp README.md dist/
 	cp CHANGELOG dist/
-
-copy-pkg:
 	cp package.json dist/
 
-build: compile copy-pkg
-
-publish: build
-	cd dist && npm publish
+publish:
+	sh release.sh

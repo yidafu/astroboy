@@ -55,6 +55,8 @@ export interface IInnerApplication<F extends PureObject = PureObject> extends IB
   routers: any[];
   versionMap: PureObject<any>;
   pkg: PureObject<any>;
+  fns: PureObject<Function>;
+  fnConfig: PureObject<any>;
 }
 
 export type MiddlewareFactory<OPTS extends any = any, APP extends IBaseApplication = IBaseApplication> = (
@@ -77,6 +79,7 @@ export interface IAstroboyOptions {
   NODE_ENV: string;
   NODE_PORT: string;
   ROOT_PATH: string;
+  PROXY: boolean;
 }
 
 export interface ILoaderOptions<F extends PureObject, A extends IBaseApplication> {
